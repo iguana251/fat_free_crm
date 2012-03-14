@@ -49,7 +49,8 @@ class Campaign < ActiveRecord::Base
   has_many    :opportunities, :dependent => :destroy, :order => "id DESC"
   has_many    :activities, :as => :subject#, :order => 'created_at DESC'
   has_many    :emails, :as => :mediator
-
+  has_many    :subscriptions, :as => :entity, :dependent => :destroy
+  
   scope :state, lambda { |filters|
     where('status IN (?)' + (filters.delete('other') ? ' OR status IS NULL' : ''), filters)
   }

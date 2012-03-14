@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224073107) do
+ActiveRecord::Schema.define(:version => 20120314080441) do
 
   create_table "account_contacts", :force => true do |t|
     t.integer  "account_id"
@@ -323,6 +323,15 @@ ActiveRecord::Schema.define(:version => 20120224073107) do
   end
 
   add_index "settings", ["name"], :name => "index_settings_on_name"
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "entity_id"
+    t.string   "entity_type"
+    t.integer  "event_types", :default => 0, :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

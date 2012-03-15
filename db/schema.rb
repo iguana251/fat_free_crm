@@ -328,9 +328,9 @@ ActiveRecord::Schema.define(:version => 20120314080441) do
     t.integer  "user_id"
     t.integer  "entity_id"
     t.string   "entity_type"
-    t.integer  "event_types", :default => 0, :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "event_type",  :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "taggings", :force => true do |t|

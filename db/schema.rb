@@ -333,6 +333,8 @@ ActiveRecord::Schema.define(:version => 20120314080441) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "subscriptions", ["user_id", "entity_id", "entity_type", "event_type"], :name => "unique_subscriptions_index", :unique => true
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"

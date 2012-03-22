@@ -40,7 +40,7 @@ class Comment < ActiveRecord::Base
   scope :created_by, lambda { |user| where(:user_id => user.id) }
 
   validates_presence_of :user, :commentable, :comment
-  after_create :log_activity, :add_subscribed_user
+  after_create :log_activity, :add_subscribed_user, :notify_subscribers
 
   def expanded?;  self.state == "Expanded";  end
   def collapsed?; self.state == "Collapsed"; end
@@ -55,6 +55,15 @@ class Comment < ActiveRecord::Base
   def add_subscribed_user
     subscribed_users = (commentable.subscribed_users + [user.id]).uniq
     commentable.update_attribute :subscribed_users, subscribed_users
+  end
+
+  def notify_subscribers
+    # Notify subscribed users when a comment is added, unless user created this comment
+    commentable.subscribed_users.reject{|user_id| user_id == user.id}.each do |subscriber_id|
+      if subscriber = User.find_by_id(subscriber_id)
+        SubscriptionMailer.comment_notification(subscriber, self).deliver
+      end
+    end
   end
 
 end

@@ -46,6 +46,8 @@ class Task < ActiveRecord::Base
   belongs_to  :asset, :polymorphic => true
   has_many    :activities, :as => :subject#, :order => 'tasks.created_at DESC'
 
+  serialize :subscribed_users, Array
+
   # Tasks created by the user for herself, or assigned to her by others. That's
   # what gets shown on Tasks/Pending and Tasks/Completed pages.
   scope :my, lambda { |*args|

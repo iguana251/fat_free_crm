@@ -350,18 +350,19 @@ ActiveRecord::Schema.define(:version => 20120314080441) do
     t.integer  "user_id"
     t.integer  "assigned_to"
     t.integer  "completed_by"
-    t.string   "name",                          :default => "", :null => false
+    t.string   "name",                           :default => "", :null => false
     t.integer  "asset_id"
     t.string   "asset_type"
-    t.string   "priority",        :limit => 32
-    t.string   "category",        :limit => 32
-    t.string   "bucket",          :limit => 32
+    t.string   "priority",         :limit => 32
+    t.string   "category",         :limit => 32
+    t.string   "bucket",           :limit => 32
     t.datetime "due_at"
     t.datetime "completed_at"
     t.datetime "deleted_at"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.string   "background_info"
+    t.text     "subscribed_users"
   end
 
   add_index "tasks", ["assigned_to"], :name => "index_tasks_on_assigned_to"

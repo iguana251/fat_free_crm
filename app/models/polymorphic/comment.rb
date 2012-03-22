@@ -40,7 +40,7 @@ class Comment < ActiveRecord::Base
   scope :created_by, lambda { |user| where(:user_id => user.id) }
 
   validates_presence_of :user, :commentable, :comment
-  after_create :log_activity
+  after_create :log_activity, :add_subscribed_user
 
   def expanded?;  self.state == "Expanded";  end
   def collapsed?; self.state == "Collapsed"; end
@@ -49,6 +49,12 @@ class Comment < ActiveRecord::Base
   def log_activity
     current_user = User.find(user_id)
     Activity.log(current_user, commentable, :commented) if current_user
+  end
+
+  # Add comment's user to subscribed_users field on entity
+  def add_subscribed_user
+    subscribed_users = (commentable.subscribed_users + [user.id]).uniq
+    commentable.update_attribute :subscribed_users, subscribed_users
   end
 
 end

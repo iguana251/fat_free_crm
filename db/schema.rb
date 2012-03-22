@@ -32,19 +32,20 @@ ActiveRecord::Schema.define(:version => 20120314080441) do
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "assigned_to"
-    t.string   "name",            :limit => 64, :default => "",       :null => false
-    t.string   "access",          :limit => 8,  :default => "Public"
-    t.string   "website",         :limit => 64
-    t.string   "toll_free_phone", :limit => 32
-    t.string   "phone",           :limit => 32
-    t.string   "fax",             :limit => 32
+    t.string   "name",             :limit => 64, :default => "",       :null => false
+    t.string   "access",           :limit => 8,  :default => "Public"
+    t.string   "website",          :limit => 64
+    t.string   "toll_free_phone",  :limit => 32
+    t.string   "phone",            :limit => 32
+    t.string   "fax",              :limit => 32
     t.datetime "deleted_at"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
-    t.string   "email",           :limit => 64
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.string   "email",            :limit => 64
     t.string   "background_info"
-    t.integer  "rating",                        :default => 0,        :null => false
-    t.string   "category",        :limit => 32
+    t.integer  "rating",                         :default => 0,        :null => false
+    t.string   "category",         :limit => 32
+    t.text     "subscribed_users"
   end
 
   add_index "accounts", ["assigned_to"], :name => "index_accounts_on_assigned_to"
@@ -113,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20120314080441) do
     t.datetime "created_at",                                                                             :null => false
     t.datetime "updated_at",                                                                             :null => false
     t.string   "background_info"
+    t.text     "subscribed_users"
   end
 
   add_index "campaigns", ["assigned_to"], :name => "index_campaigns_on_assigned_to"
@@ -144,28 +146,29 @@ ActiveRecord::Schema.define(:version => 20120314080441) do
     t.integer  "lead_id"
     t.integer  "assigned_to"
     t.integer  "reports_to"
-    t.string   "first_name",      :limit => 64,  :default => "",       :null => false
-    t.string   "last_name",       :limit => 64,  :default => "",       :null => false
-    t.string   "access",          :limit => 8,   :default => "Public"
-    t.string   "title",           :limit => 64
-    t.string   "department",      :limit => 64
-    t.string   "source",          :limit => 32
-    t.string   "email",           :limit => 64
-    t.string   "alt_email",       :limit => 64
-    t.string   "phone",           :limit => 32
-    t.string   "mobile",          :limit => 32
-    t.string   "fax",             :limit => 32
-    t.string   "blog",            :limit => 128
-    t.string   "linkedin",        :limit => 128
-    t.string   "facebook",        :limit => 128
-    t.string   "twitter",         :limit => 128
+    t.string   "first_name",       :limit => 64,  :default => "",       :null => false
+    t.string   "last_name",        :limit => 64,  :default => "",       :null => false
+    t.string   "access",           :limit => 8,   :default => "Public"
+    t.string   "title",            :limit => 64
+    t.string   "department",       :limit => 64
+    t.string   "source",           :limit => 32
+    t.string   "email",            :limit => 64
+    t.string   "alt_email",        :limit => 64
+    t.string   "phone",            :limit => 32
+    t.string   "mobile",           :limit => 32
+    t.string   "fax",              :limit => 32
+    t.string   "blog",             :limit => 128
+    t.string   "linkedin",         :limit => 128
+    t.string   "facebook",         :limit => 128
+    t.string   "twitter",          :limit => 128
     t.date     "born_on"
-    t.boolean  "do_not_call",                    :default => false,    :null => false
+    t.boolean  "do_not_call",                     :default => false,    :null => false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "background_info"
-    t.string   "skype",           :limit => 128
+    t.string   "skype",            :limit => 128
+    t.text     "subscribed_users"
   end
 
   add_index "contacts", ["assigned_to"], :name => "index_contacts_on_assigned_to"
@@ -228,29 +231,30 @@ ActiveRecord::Schema.define(:version => 20120314080441) do
     t.integer  "user_id"
     t.integer  "campaign_id"
     t.integer  "assigned_to"
-    t.string   "first_name",      :limit => 64,  :default => "",       :null => false
-    t.string   "last_name",       :limit => 64,  :default => "",       :null => false
-    t.string   "access",          :limit => 8,   :default => "Public"
-    t.string   "title",           :limit => 64
-    t.string   "company",         :limit => 64
-    t.string   "source",          :limit => 32
-    t.string   "status",          :limit => 32
-    t.string   "referred_by",     :limit => 64
-    t.string   "email",           :limit => 64
-    t.string   "alt_email",       :limit => 64
-    t.string   "phone",           :limit => 32
-    t.string   "mobile",          :limit => 32
-    t.string   "blog",            :limit => 128
-    t.string   "linkedin",        :limit => 128
-    t.string   "facebook",        :limit => 128
-    t.string   "twitter",         :limit => 128
-    t.integer  "rating",                         :default => 0,        :null => false
-    t.boolean  "do_not_call",                    :default => false,    :null => false
+    t.string   "first_name",       :limit => 64,  :default => "",       :null => false
+    t.string   "last_name",        :limit => 64,  :default => "",       :null => false
+    t.string   "access",           :limit => 8,   :default => "Public"
+    t.string   "title",            :limit => 64
+    t.string   "company",          :limit => 64
+    t.string   "source",           :limit => 32
+    t.string   "status",           :limit => 32
+    t.string   "referred_by",      :limit => 64
+    t.string   "email",            :limit => 64
+    t.string   "alt_email",        :limit => 64
+    t.string   "phone",            :limit => 32
+    t.string   "mobile",           :limit => 32
+    t.string   "blog",             :limit => 128
+    t.string   "linkedin",         :limit => 128
+    t.string   "facebook",         :limit => 128
+    t.string   "twitter",          :limit => 128
+    t.integer  "rating",                          :default => 0,        :null => false
+    t.boolean  "do_not_call",                     :default => false,    :null => false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "background_info"
-    t.string   "skype",           :limit => 128
+    t.string   "skype",            :limit => 128
+    t.text     "subscribed_users"
   end
 
   add_index "leads", ["assigned_to"], :name => "index_leads_on_assigned_to"
@@ -267,18 +271,19 @@ ActiveRecord::Schema.define(:version => 20120314080441) do
     t.integer  "user_id"
     t.integer  "campaign_id"
     t.integer  "assigned_to"
-    t.string   "name",            :limit => 64,                                :default => "",       :null => false
-    t.string   "access",          :limit => 8,                                 :default => "Public"
-    t.string   "source",          :limit => 32
-    t.string   "stage",           :limit => 32
+    t.string   "name",             :limit => 64,                                :default => "",       :null => false
+    t.string   "access",           :limit => 8,                                 :default => "Public"
+    t.string   "source",           :limit => 32
+    t.string   "stage",            :limit => 32
     t.integer  "probability"
-    t.decimal  "amount",                        :precision => 12, :scale => 2
-    t.decimal  "discount",                      :precision => 12, :scale => 2
+    t.decimal  "amount",                         :precision => 12, :scale => 2
+    t.decimal  "discount",                       :precision => 12, :scale => 2
     t.date     "closes_on"
     t.datetime "deleted_at"
-    t.datetime "created_at",                                                                         :null => false
-    t.datetime "updated_at",                                                                         :null => false
+    t.datetime "created_at",                                                                          :null => false
+    t.datetime "updated_at",                                                                          :null => false
     t.string   "background_info"
+    t.text     "subscribed_users"
   end
 
   add_index "opportunities", ["assigned_to"], :name => "index_opportunities_on_assigned_to"
@@ -323,17 +328,6 @@ ActiveRecord::Schema.define(:version => 20120314080441) do
   end
 
   add_index "settings", ["name"], :name => "index_settings_on_name"
-
-  create_table "subscriptions", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "entity_id"
-    t.string   "entity_type"
-    t.string   "event_type",  :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "subscriptions", ["user_id", "entity_id", "entity_type", "event_type"], :name => "unique_subscriptions_index", :unique => true
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

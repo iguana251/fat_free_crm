@@ -8,8 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/fatfreecrm/mailman.git
-  revision: 7ea6cd16dc6f7789e2a9e7f9700a3a80b901788b
-  branch: imap
+  revision: d83c3aa24f5ebd6d3b67062cede0eac73fba4033
   specs:
     mailman (0.4.0)
       activesupport (>= 2.3.4)

@@ -32,6 +32,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'chosen-rails'
   gem.add_dependency 'ajax-chosen-rails',   '>= 0.1.5'
   gem.add_dependency 'ransack',             '~> 0.6.0'
+  gem.add_dependency 'email_reply_parser'
 
   gem.add_development_dependency 'rspec-rails',  '~> 2.8.1'
   gem.add_development_dependency 'capybara'

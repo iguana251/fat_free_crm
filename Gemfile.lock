@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/LessonPlanet/responds_to_parent.git
+  revision: 1f0c6d82eda5e7f331a30fc029e7ead2a7dbdebf
+  specs:
+    responds_to_parent (1.0.20091013)
+
+GIT
   remote: git://github.com/fatfreecrm/chosen-rails.git
   revision: 33c92a8554ee14d11b7293eb531371a05c0a0b67
   specs:
@@ -17,10 +23,11 @@ GIT
       polyamorous (~> 0.5.0)
 
 GIT
-  remote: https://github.com/LessonPlanet/responds_to_parent.git
-  revision: 1f0c6d82eda5e7f331a30fc029e7ead2a7dbdebf
+  remote: git://github.com/ndbroadbent/email_reply_parser.git
+  revision: 49c62f9bd467b416f0e2bb09112ad6f5767a9fce
+  branch: ensure_newline_above_underscores
   specs:
-    responds_to_parent (1.0.20091013)
+    email_reply_parser (0.5.0)
 
 PATH
   remote: .
@@ -92,7 +99,6 @@ GEM
     database_cleaner (0.7.1)
     diff-lcs (1.1.3)
     dynamic_form (1.1.4)
-    email_reply_parser (0.5.0)
     erubis (2.7.0)
     execjs (1.3.0)
       multi_json (~> 1.0)
@@ -248,7 +254,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   database_cleaner
   dynamic_form
-  email_reply_parser
+  email_reply_parser!
   factory_girl (~> 2.6.1)
   factory_girl_rails (~> 1.7.0)
   ffaker (>= 1.12.0)
